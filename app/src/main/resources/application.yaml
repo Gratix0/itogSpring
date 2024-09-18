@@ -1,0 +1,27 @@
+spring:
+  config:
+    name: shop_web
+  datasource:
+    url: jdbc:postgresql://localhost:5432/itogDB
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+  security:
+    user:
+      name: admin
+      password: Qwerty_123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql:
+server:
+  port: 7999
+
+
+
+

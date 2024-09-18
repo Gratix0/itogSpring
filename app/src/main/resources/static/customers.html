@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Управление клиентами</title>
+    <style>
+        /* Простейшие стили для таблицы */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+<h1>Список клиентов</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Email</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody id="customerTableBody">
+    <!-- Данные будут загружены здесь -->
+    </tbody>
+</table>
+
+<h2>Добавить клиента</h2>
+<form id="addCustomerForm">
+    <label>
+        Имя:
+        <input type="text" id="customerName" required>
+    </label><br>
+    <label>
+        Email:
+        <input type="email" id="customerEmail" required>
+    </label><br>
+    <button type="submit">Добавить</button>
+</form>
+
+<h2>Удалить клиента</h2>
+<form id="deleteCustomerForm">
+    <label>
+        ID клиента:
+        <input type="number" id="deleteCustomerId" required>
+    </label><br>
+    <button type="submit">Удалить</button>
+</form>
+
+<script>
+    // Функция для загрузки клиентов
+    function loadCustomers() {
+        fetch('/apicustomers')
+            .then(response => response.json())
+            .then(customers => {
+                const tableBody = document.getElementById('customerTableBody');
+                tableBody.innerHTML = '';
+
+                customers.forEach(customer => {
+                    const row = document.createElement('tr');
+
+                    row.innerHTML = `
+                        <td>${customer.id}</td>
+                        <td>${customer.name}</td>
+                        <td>${customer.email}</td>
+                        <td>
+                            <button onclick="deleteCustomer(${customer.id})">Удалить</button>
+                        </td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Ошибка при загрузке клиентов:', error));
+    }
+
+    // Функция для добавления клиента
+    document.getElementById('addCustomerForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById('customerName').value;
+        const email = document.getElementById('customerEmail').value;
+
+        fetch('/apicustomers', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ name, email }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert('Клиент добавлен');
+            loadCustomers();
+            event.target.reset();
+        })
+        .catch(error => console.error('Ошибка при добавлении клиента:', error));
+    });
+
+    // Функция для удаления клиента
+    function deleteCustomer(id) {
+        if (confirm('Вы уверены, что хотите удалить этого клиента?')) {
+            fetch(`/apicustomers/${id}`, {
+                method: 'DELETE',
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert('Клиент удален');
+                    loadCustomers();
+                } else {
+                    alert('Ошибка при удалении клиента');
+                }
+            })
+            .catch(error => console.error('Ошибка при удалении клиента:', error));
+        }
+    }
+
+    // Инициализация загрузки клиентов при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        loadCustomers();
+    });
+</script>
+</body>
+</html>
