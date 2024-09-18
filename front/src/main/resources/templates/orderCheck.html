@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Управление заказами</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4; /* Светлый фон */
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #4CAF50; /* Зеленый цвет заголовка */
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #333; /* Темный цвет подзаголовка */
+            margin: 15px 0; /* Вертикальные отступы */
+        }
+
+        p {
+            font-size: 16px; /* Размер шрифта для параграфа */
+            color: #555; /* Цвет текста для параграфа */
+            margin-bottom: 15px; /* Отступ снизу */
+        }
+
+        .customer-card {
+            background-color: #fff; /* Белый фон */
+            border-radius: 8px; /* Закругленные углы */
+            padding: 20px; /* Внутренние отступы */
+            margin-bottom: 20px; /* Отступ между плитками */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Тень для эффекта глубины */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 10px; /* Отступ сверху */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .alert {
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .alert-error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Список заказов</h1>
+<div id="alertContainer"></div>
+<div id="customerOrdersContainer"></div>
+
+<script>
+    // Функция для загрузки клиентов и их заказов
+    function loadCustomerOrders() {
+        fetch('http://localhost:7999/api/customers')  // Измените на ваш API
+            .then(response => response.json())
+            .then(customers => {
+                const container = document.getElementById('customerOrdersContainer');
+                container.innerHTML = '';
+
+                customers.forEach(customer => {
+                    const customerDiv = document.createElement('div');
+                    customerDiv.className = 'customer-card'; // Применяем класс для стилизации
+
+                    // Заголовок клиента
+                    customerDiv.innerHTML = `<h2>${customer.name} (ID: ${customer.id})</h2>
+                                             <p>Контакт: ${customer.contactInfo}</p>`;
+
+                    if (customer.orders.length > 0) {
+                        const table = document.createElement('table');
+                        table.innerHTML = `
+                            <thead>
+                                <tr>
+                                    <th>Заказ ID</th>
+                                    <th>Время заказа</th>
+                                    <th>Товары</th>
+                                    <th>Соусы</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        `;
+
+                        customer.orders.forEach(order => {
+                            const shawarmaNames = order.shawarmas.map(s => s.name).join(', ');
+                            const sauceNames = order.sauces.map(s => s.name).join(', ');
+
+                            // Преобразование массива в объект Date
+                            const orderTimeArray = order.orderTime; // [2024, 9, 27, 16, 8]
+                            const orderTime = new Date(orderTimeArray[0], orderTimeArray[1] - 1, orderTimeArray[2], orderTimeArray[3], orderTimeArray[4]); // Месяцы с 0
+
+                            table.innerHTML += `
+                                <tr>
+                                    <td>${order.id}</td>
+                                    <td>${orderTime.toLocaleString()}</td>
+                                    <td>${shawarmaNames}</td>
+                                    <td>${sauceNames}</td>
+                                </tr>
+                            `;
+                        });
+
+                        table.innerHTML += `</tbody></table>`;
+                        customerDiv.appendChild(table);
+                    } else {
+                        customerDiv.innerHTML += `<p>Нет заказов.</p>`;
+                    }
+
+                    container.appendChild(customerDiv);
+                });
+            })
+            .catch(error => {
+                console.error('Ошибка при загрузке клиентов:', error);
+                showAlert('Ошибка при загрузке данных.', 'error');
+            });
+    }
+
+    // Функция для отображения уведомлений
+    function showAlert(message, type) {
+        const alertContainer = document.getElementById('alertContainer');
+        const alertDiv = document.createElement('div');
+        alertDiv.className = `alert alert-${type}`;
+        alertDiv.textContent = message;
+        alertContainer.appendChild(alertDiv);
+
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 3000);
+    }
+
+    // Инициализация загрузки клиентов и их заказов при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function () {
+        loadCustomerOrders();
+    });
+</script>
+</body>
+</html>
