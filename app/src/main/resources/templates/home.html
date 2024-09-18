@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Главная страница</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4; /* Светлый фон */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333; /* Темный цвет заголовка */
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        h2 {
+            color: #4CAF50; /* Зеленый цвет подзаголовка */
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: auto;
+            max-width: 300px; /* Ограничение ширины для меню */
+        }
+
+        .btn {
+            display: block; /* Изменяем на block для одинаковой длины */
+            width: 100%; /* Задаем ширину кнопок */
+            padding: 15px;
+            margin: 10px 0; /* Вертикальные отступы */
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #4CAF50; /* Зеленый цвет для всех кнопок */
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #45a049; /* Темный зеленый на наведение */
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+<h1>Добро пожаловать в мир шаурмы!</h1>
+<h2>Выберите страницу:</h2>
+
+<div class="menu">
+    <a href="/order" class="btn">Добавить заказ</a>
+    <a href="/orderCheck" class="btn">Посмотреть заказы клиентов</a>
+    <a href="/shawarmas" class="btn">Шаверма</a>
+    <a href="/ingredients" class="btn">Ингредиенты</a>
+    <a href="/sauces" class="btn">Соусы</a>
+    <a href="/customers" class="btn">Поставщики</a>
+    <a href="/employees" class="btn">Сотрудники</a>
+    <a href="/locations" class="btn">Локации</a>
+</div>
+
+<div class="footer">С миру по нитке, но всем по шавухе!</div>
+</body>
+
+</html>

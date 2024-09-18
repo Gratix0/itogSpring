@@ -1,5 +1,6 @@
 package com.shaurmaShop.app.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.util.Set;
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class Order {
     private LocalDateTime orderTime;
 
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "customer_id")
     private Customer customer;
 

@@ -1,5 +1,6 @@
 package com.shaurmaShop.app.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import java.util.Set;
@@ -15,6 +16,7 @@ public class Customer {
     private String contactInfo;
 
     @Nullable
+    @JsonManagedReference
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 
