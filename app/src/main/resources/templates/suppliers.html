@@ -111,7 +111,7 @@
   </tr>
   </thead>
   <tbody id="supplierTableBody">
-  <!-- Данные будут загружены здесь -->
+
   </tbody>
 </table>
 
@@ -131,7 +131,7 @@
 <div id="alertContainer"></div>
 
 <script>
-  // Функция для загрузки поставщиков
+
   function loadSuppliers() {
       fetch('http://localhost:7999/api/suppliers')
           .then(response => response.json())
@@ -163,7 +163,7 @@
           });
   }
 
-  // Функция для добавления поставщика
+
   document.getElementById('addSupplierForm').addEventListener('submit', function (event) {
       event.preventDefault();
 
@@ -189,7 +189,7 @@
       });
   });
 
-  // Функция для редактирования поставщика
+
   function editSupplier(id) {
       const name = prompt("Введите новое название:");
       const contactInfo = prompt("Введите новую контактную информацию:");
@@ -217,7 +217,7 @@
       }
   }
 
-  // Функция для удаления поставщика
+
   function deleteSupplier(id) {
       if (confirm('Вы уверены, что хотите удалить этого поставщика?')) {
           fetch(`http://localhost:7999/api/suppliers/${id}`, {
@@ -238,7 +238,7 @@
       }
   }
 
-  // Функция для отображения уведомлений
+
   function showAlert(message, type) {
       const alertContainer = document.getElementById('alertContainer');
       const alertDiv = document.createElement('div');
@@ -251,7 +251,7 @@
       }, 3000);
   }
 
-  // Инициализация загрузки поставщиков при загрузке страницы
+
   document.addEventListener('DOMContentLoaded', function () {
       loadSuppliers();
   });

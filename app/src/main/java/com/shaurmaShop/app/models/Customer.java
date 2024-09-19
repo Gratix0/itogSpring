@@ -20,7 +20,7 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders;
 
-    // Геттеры и сеттеры
+    // _________________________
 
     public Long getId() {
         return id;

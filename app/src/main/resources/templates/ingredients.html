@@ -111,7 +111,7 @@
   </tr>
   </thead>
   <tbody id="ingredientTableBody">
-  <!-- Данные будут загружены здесь -->
+
   </tbody>
 </table>
 
@@ -131,7 +131,7 @@
 <div id="alertContainer"></div>
 
 <script>
-  // Функция для загрузки ингредиентов
+
   function loadIngredients() {
       fetch('http://localhost:7999/api/ingredients')
           .then(response => response.json())
@@ -163,7 +163,7 @@
           });
   }
 
-  // Функция для добавления ингредиента
+
   document.getElementById('addIngredientForm').addEventListener('submit', function (event) {
       event.preventDefault();
 
@@ -189,7 +189,7 @@
       });
   });
 
-  // Функция для редактирования ингредиента
+
   function editIngredient(id) {
       const name = prompt("Введите новое название:");
       const type = prompt("Введите новый тип:");
@@ -217,7 +217,7 @@
       }
   }
 
-  // Функция для удаления ингредиента
+
   function deleteIngredient(id) {
       if (confirm('Вы уверены, что хотите удалить этот ингредиент?')) {
           fetch(`http://localhost:7999/api/ingredients/${id}`, {
@@ -238,7 +238,7 @@
       }
   }
 
-  // Функция для отображения уведомлений
+
   function showAlert(message, type) {
       const alertContainer = document.getElementById('alertContainer');
       const alertDiv = document.createElement('div');
@@ -251,7 +251,7 @@
       }, 3000);
   }
 
-  // Инициализация загрузки ингредиентов при загрузке страницы
+
   document.addEventListener('DOMContentLoaded', function () {
       loadIngredients();
   });

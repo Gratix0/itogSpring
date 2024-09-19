@@ -18,7 +18,7 @@ public class Employee {
     @JsonBackReference
     private Location location;
 
-    // Геттеры и сеттеры
+    // _________________________
 
     public Long getId() {
         return id;

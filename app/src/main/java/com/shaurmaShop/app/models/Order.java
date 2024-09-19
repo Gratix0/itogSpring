@@ -35,8 +35,7 @@ public class Order {
     )
     private Set<SaucePosition> sauces;
 
-    // Геттеры и сеттеры
-
+    // _________________________
     public Long getId() {
         return id;
     }

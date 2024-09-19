@@ -109,7 +109,7 @@
     </tr>
     </thead>
     <tbody id="locationTableBody">
-    <!-- Данные будут загружены здесь -->
+
     </tbody>
 </table>
 
@@ -125,7 +125,7 @@
 <div id="alertContainer"></div>
 
 <script>
-    // Функция для загрузки локаций
+
     function loadLocations() {
         fetch('http://localhost:7999/api/locations')
             .then(response => response.json())
@@ -158,7 +158,7 @@
             });
     }
 
-    // Функция для добавления локации
+
     document.getElementById('addLocationForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -183,7 +183,7 @@
         });
     });
 
-    // Функция для удаления локации
+
     function deleteLocation(id) {
         if (confirm('Вы уверены, что хотите удалить эту локацию?')) {
             fetch(`http://localhost:7999/api/locations/${id}`, {
@@ -204,7 +204,7 @@
         }
     }
 
-    // Функция для отображения уведомлений
+
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alertContainer');
         const alertDiv = document.createElement('div');
@@ -217,7 +217,7 @@
         }, 3000);
     }
 
-    // Инициализация загрузки локаций при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function () {
         loadLocations();
     });

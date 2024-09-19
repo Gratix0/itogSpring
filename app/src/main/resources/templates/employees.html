@@ -134,7 +134,7 @@
 <div id="alertContainer"></div>
 
 <script>
-    // Функция для загрузки сотрудников
+
     function loadEmployees() {
         fetch('http://localhost:7999/api/employees')
             .then(response => response.json())
@@ -165,7 +165,7 @@
             });
     }
 
-    // Функция для добавления сотрудника
+
     document.getElementById('addEmployeeForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -192,7 +192,7 @@
         });
     });
 
-    // Функция для удаления сотрудника
+
     function deleteEmployee(id) {
         if (confirm('Вы уверены, что хотите удалить этого сотрудника?')) {
             fetch(`http://localhost:7999/api/employees/${id}`, {
@@ -213,7 +213,7 @@
         }
     }
 
-    // Функция для отображения уведомлений
+
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alertContainer');
         const alertDiv = document.createElement('div');
@@ -226,7 +226,7 @@
         }, 3000);
     }
 
-    // Инициализация загрузки сотрудников при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function () {
         loadEmployees();
     });

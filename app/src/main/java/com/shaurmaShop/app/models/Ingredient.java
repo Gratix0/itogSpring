@@ -19,6 +19,8 @@ public class Ingredient {
     @ManyToMany(mappedBy = "ingredients")
     private Set<SaucePosition> sauces;
 
+    //_________________________
+
     public Long getId() {
         return id;
     }

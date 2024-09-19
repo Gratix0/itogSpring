@@ -145,7 +145,7 @@
 </form>
 
 <script>
-    // Функция для загрузки заказов
+
     function loadOrders() {
         fetch('http://localhost:7999/api/orders')
             .then(response => response.json())
@@ -175,7 +175,7 @@
             .catch(error => console.error('Ошибка при загрузке заказов:', error));
     }
 
-    // Функция для добавления заказа
+
     document.getElementById('addOrderForm').addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -209,7 +209,7 @@
         .catch(error => console.error('Ошибка при добавлении заказа:', error));
     });
 
-    // Функция для удаления заказа
+
     function deleteOrder(id) {
         if (confirm('Вы уверены, что хотите удалить этот заказ?')) {
             fetch(`http://localhost:7999/api/orders/${id}`, {
@@ -230,7 +230,7 @@
         }
     }
 
-    // Функция для отображения уведомлений
+
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alertContainer');
         const alertDiv = document.createElement('div');
@@ -243,7 +243,7 @@
         }, 3000);
     }
 
-    // Инициализация загрузки заказов при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function () {
         loadOrders();
     });

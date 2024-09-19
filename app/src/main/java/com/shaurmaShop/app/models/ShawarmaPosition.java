@@ -22,6 +22,8 @@ public class ShawarmaPosition {
     )
     private Set<Ingredient> ingredients;
 
+    //_________________________
+
     public void setId(Long id) {
         this.id = id;
     }

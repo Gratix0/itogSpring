@@ -118,7 +118,7 @@
     </tr>
     </thead>
     <tbody id="shawarmaTableBody">
-    <!-- Данные будут загружены здесь -->
+
     </tbody>
 </table>
 
@@ -136,7 +136,7 @@
 </form>
 
 <script>
-    // Функция для загрузки шавермы
+
     function loadShawarmas() {
         fetch('http://localhost:7999/api/shawarmas')
             .then(response => response.json())
@@ -168,7 +168,7 @@
             });
     }
 
-    // Функция для добавления шавермы
+
     document.getElementById('addShawarmaForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -194,7 +194,7 @@
         });
     });
 
-    // Функция для редактирования шавермы
+
     function editShawarma(id) {
         const name = prompt("Введите новое название:");
         const price = prompt("Введите новую цену:");
@@ -222,7 +222,7 @@
         }
     }
 
-    // Функция для удаления шавермы
+
     function deleteShawarma(id) {
         if (confirm('Вы уверены, что хотите удалить эту шаверму?')) {
             fetch(`http://localhost:7999/api/shawarmas/${id}`, {
@@ -243,7 +243,7 @@
         }
     }
 
-    // Функция для отображения уведомлений
+
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alertContainer');
         const alertDiv = document.createElement('div');
@@ -256,7 +256,7 @@
         }, 3000);
     }
 
-    // Инициализация загрузки шавермы при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function () {
         loadShawarmas();
     });

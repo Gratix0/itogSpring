@@ -26,6 +26,7 @@ public class Supplier {
     )
     private Set<Ingredient> ingredientsSupplied;
 
+    //_________________________
     public void setId(Long id) {
         this.id = id;
     }

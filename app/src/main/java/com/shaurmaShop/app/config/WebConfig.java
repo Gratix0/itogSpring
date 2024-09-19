@@ -12,8 +12,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/**") // разрешаем CORS для всех API
-                .allowedOrigins("http://localhost:8001") // замените на URL вашего фронтенда
+        registry.addMapping("/api/**")
+                .allowedOrigins("http://localhost:8001")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowedHeaders("*");
     }

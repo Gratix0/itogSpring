@@ -87,7 +87,7 @@
 <div id="customerOrdersContainer"></div>
 
 <script>
-    // Функция для загрузки клиентов и их заказов
+
     function loadCustomerOrders() {
         fetch('http://localhost:7999/api/customers')  // Измените на ваш API
             .then(response => response.json())
@@ -150,7 +150,7 @@
             });
     }
 
-    // Функция для отображения уведомлений
+
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alertContainer');
         const alertDiv = document.createElement('div');
@@ -163,7 +163,7 @@
         }, 3000);
     }
 
-    // Инициализация загрузки клиентов и их заказов при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function () {
         loadCustomerOrders();
     });

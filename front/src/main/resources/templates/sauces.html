@@ -111,7 +111,7 @@
     </tr>
     </thead>
     <tbody id="sauceTableBody">
-    <!-- Данные будут загружены здесь -->
+
     </tbody>
 </table>
 
@@ -131,7 +131,7 @@
 <div id="alertContainer"></div>
 
 <script>
-    // Функция для загрузки соусов
+
     function loadSauces() {
         fetch('http://localhost:7999/api/sauces')
             .then(response => response.json())
@@ -163,7 +163,7 @@
             });
     }
 
-    // Функция для добавления соуса
+
     document.getElementById('addSauceForm').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -189,7 +189,7 @@
         });
     });
 
-    // Функция для редактирования соуса
+
     function editSauce(id) {
         const name = prompt("Введите новое название:");
         const price = prompt("Введите новую цену:");
@@ -217,7 +217,7 @@
         }
     }
 
-    // Функция для удаления соуса
+
     function deleteSauce(id) {
         if (confirm('Вы уверены, что хотите удалить этот соус?')) {
             fetch(`http://localhost:7999/api/sauces/${id}`, {
@@ -238,7 +238,7 @@
         }
     }
 
-    // Функция для отображения уведомлений
+
     function showAlert(message, type) {
         const alertContainer = document.getElementById('alertContainer');
         const alertDiv = document.createElement('div');
@@ -251,7 +251,7 @@
         }, 3000);
     }
 
-    // Инициализация загрузки соусов при загрузке страницы
+
     document.addEventListener('DOMContentLoaded', function () {
         loadSauces();
     });
